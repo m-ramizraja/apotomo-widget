@@ -1,0 +1,14 @@
+%li.loveable{:id => widget_id, 'data-id' => @tweet.id, 'data-event-url' => url_for_event(:heart)}
+  %span
+    = @tweet.text
+  %span
+    - if @tweet.loved?
+      = image_tag "heart.png"
+    - else
+      = image_tag "heart-faded.png"
+  
+-#:javascript
+  $(".loveable img").click(function() {
+    $.ajax({url: $(this).parent().parent().attr("data-event-url") + "&id=" +
+      $(this).parent().parent().attr("data-id")})
+  });

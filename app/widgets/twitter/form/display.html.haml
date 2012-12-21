@@ -1,0 +1,10 @@
+= widget_div do
+  What are you up to?
+  = form_for :tweet, :url => url_for_event(:submit), :remote => true do |f|
+    - if @tweet and @tweet.errors.any?
+      %ul
+      - @tweet.errors.full_messages.each do |e|
+        %li{:style => "color : red"}
+          = e
+    = f.text_field 'text'
+    = f.submit "Tweet!"

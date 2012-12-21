@@ -1,0 +1,11 @@
+#trashbin
+  = image_tag "trashbin_empty.png", 'data-event-url' => url_for_event(:trash)
+
+:javascript
+  $("#trashbin").droppable({
+    drop: function(event, ui) {
+      //alert("dropped")
+      $.ajax({url: $("#trashbin img").attr("data-event-url") +
+        "&id=" + ui.draggable.attr("data-id")});
+    }
+  });
